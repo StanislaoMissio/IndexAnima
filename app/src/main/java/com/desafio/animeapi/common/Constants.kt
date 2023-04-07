@@ -6,4 +6,7 @@ object Constants {
 
     const val ANIME_ID = "animeId"
 
+    const val LOGIN_LABEL = "login"
+    const val PASSWORD_LABEL = "password"
+
 }

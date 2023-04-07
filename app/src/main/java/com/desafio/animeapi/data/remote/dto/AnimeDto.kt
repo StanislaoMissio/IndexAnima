@@ -1,5 +1,6 @@
 package com.desafio.animeapi.data.remote.dto
 
+import com.desafio.animeapi.data.remote.Attributes
 import com.desafio.animeapi.domain.model.Anime
 
 data class AnimeDto(
