@@ -8,6 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.desafio.animeapi.presentation.anime_list.AnimeListScreen
+import com.desafio.animeapi.presentation.login.LoginScreen
+import com.desafio.animeapi.presentation.register.RegisterScreen
 
 class MainActivity : ComponentActivity() {
 
@@ -18,7 +20,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = Screen.AnimeListScreen.route
+                    startDestination = Screen.LoginScreen.route
                 ) {
                     composable(
                         route = Screen.AnimeListScreen.route
@@ -29,6 +31,16 @@ class MainActivity : ComponentActivity() {
                         route = Screen.AnimeDetailScreen.route
                     ) {
                         //TODO
+                    }
+                    composable(
+                        route = Screen.LoginScreen.route
+                    ) {
+                        LoginScreen(navController = navController)
+                    }
+                    composable(
+                        route = Screen.RegisterScreen.route
+                    ) {
+                        RegisterScreen(navController = navController)
                     }
                 }
             }

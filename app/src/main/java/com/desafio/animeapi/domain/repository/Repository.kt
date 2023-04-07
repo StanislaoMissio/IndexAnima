@@ -1,7 +1,7 @@
 package com.desafio.animeapi.domain.repository
 
 import com.desafio.animeapi.data.remote.dto.AnimeDto
-import com.desafio.animeapi.data.remote.dto.Response
+import com.desafio.animeapi.data.remote.Response
 
 interface Repository {
     suspend fun getAnimes(): Response<AnimeDto>

@@ -1,7 +1,7 @@
 package com.desafio.animeapi.data.repository
 
 import com.desafio.animeapi.data.remote.dto.AnimeDto
-import com.desafio.animeapi.data.remote.dto.Response
+import com.desafio.animeapi.data.remote.Response
 import com.desafio.animeapi.di.Api
 import com.desafio.animeapi.domain.repository.Repository
 

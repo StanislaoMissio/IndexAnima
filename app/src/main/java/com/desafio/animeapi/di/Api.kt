@@ -1,7 +1,7 @@
 package com.desafio.animeapi.di
 
 import com.desafio.animeapi.data.remote.dto.AnimeDto
-import com.desafio.animeapi.data.remote.dto.Response
+import com.desafio.animeapi.data.remote.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 
