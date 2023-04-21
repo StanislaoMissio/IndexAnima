@@ -11,10 +11,10 @@ import java.io.IOException
 
 class GetAnimeUseCase(private val repository: Repository) {
 
-    operator fun invoke(animeId: String): Flow<Resource<List<Anime>>> = flow {
+    operator fun invoke(animeId: String): Flow<Resource<Anime>> = flow {
         try {
             emit(Resource.Loading())
-            val anime = repository.getAnime(animeId).data.map { it.toAnime() }
+            val anime = repository.getAnime(animeId).data[0].toAnime()
             emit(Resource.Success(anime))
         } catch (exception: HttpException) {
             emit(Resource.Error(exception.localizedMessage ?: "Ocorreu um erro inesperado"))
