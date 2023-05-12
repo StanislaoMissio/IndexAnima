@@ -170,7 +170,7 @@ fun LoginScreen(
                     .padding(top = 24.dp, start = 96.dp, end = 96.dp)
             )
             Button(
-                onClick = { loginViewModel.doLogin() },
+                onClick = { /* TODO Criar chamada para google auth */ },
                 content = {
                     Row(verticalAlignment = CenterVertically) {
                         Image(
