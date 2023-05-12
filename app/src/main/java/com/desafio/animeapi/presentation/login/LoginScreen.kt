@@ -2,18 +2,24 @@ package com.desafio.animeapi.presentation.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
+import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.*
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
@@ -23,6 +29,7 @@ import com.desafio.animeapi.R
 import com.desafio.animeapi.presentation.Screen
 import com.desafio.animeapi.presentation.login.components.InvisibleBackground
 import org.koin.androidx.compose.koinViewModel
+import java.util.*
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -34,6 +41,7 @@ fun LoginScreen(
     var email by remember { loginViewModel.email }
     var password by remember { loginViewModel.password }
     var rememberPassword by remember { mutableStateOf(false) }
+    var passwordVisibility by remember { mutableStateOf(false) }
     val state = loginViewModel.state.value
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -56,11 +64,11 @@ fun LoginScreen(
             TextField(
                 value = email,
                 onValueChange = { email = it },
-                label = {
+                placeholder = {
                     Text(
                         text = stringResource(
                             id = R.string.email_label
-                        )
+                        ).uppercase(Locale.ROOT)
                     )
                 },
                 modifier = Modifier
@@ -68,32 +76,63 @@ fun LoginScreen(
                     .padding(top = 54.dp),
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color.Transparent,
-                    disabledIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.White,
-                    focusedIndicatorColor = Color.White,
-                    textColor = Color.Gray
-                ),
+                    focusedIndicatorColor = colorResource(id = R.color.D195E0),
+                    cursorColor = Color.White,
+                    textColor = Color.White
+                )
             )
             TextField(
                 value = password,
                 onValueChange = { password = it },
-                label = {
+                placeholder = {
                     Text(
                         text = stringResource(
                             id = R.string.password_label
-                        )
+                        ).uppercase(Locale.ROOT)
                     )
                 },
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 32.dp),
+                    .fillMaxWidth(),
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color.Transparent,
-                    disabledIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.White,
-                    focusedIndicatorColor = Color.White,
-                    textColor = Color.Gray
-                )
+                    focusedIndicatorColor = colorResource(id = R.color.D195E0),
+                    cursorColor = Color.White,
+                    textColor = Color.White
+                ),
+                trailingIcon = {
+                    IconButton(
+                        onClick = {
+                            passwordVisibility = !passwordVisibility
+                        },
+                        content = {
+                            if (passwordVisibility) {
+                                Icon(
+                                    imageVector = ImageVector.vectorResource(id = R.drawable.icon_visibility_on),
+                                    contentDescription = null
+                                )
+                            } else {
+                                Icon(
+                                    imageVector = ImageVector.vectorResource(id = R.drawable.icon_visibility_off),
+                                    contentDescription = null
+                                )
+                            }
+                        },
+                        colors = IconButtonDefaults.iconButtonColors(
+                            contentColor = Color.White
+                        )
+                    )
+                },
+                visualTransformation = if (passwordVisibility) VisualTransformation.None else PasswordVisualTransformation()
+            )
+            ClickableText(
+                text = AnnotatedString(stringResource(id = R.string.forgot_password)),
+                onClick = { /*TODO call forgot password screen*/ },
+                style = TextStyle(color = Color.White),
+                modifier = Modifier
+                    .align(End)
+                    .padding(top = 8.dp, end = 8.dp)
             )
             Row(
                 modifier = Modifier
@@ -144,7 +183,6 @@ fun LoginScreen(
                             fontWeight = FontWeight.Bold
                         )
                     }
-
                 },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.White,
@@ -156,8 +194,9 @@ fun LoginScreen(
             )
         }
         Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
-                .fillMaxWidth()
+                .padding(bottom = 24.dp)
                 .align(BottomCenter)
         ) {
             Text(
@@ -165,11 +204,15 @@ fun LoginScreen(
                 textAlign = TextAlign.Center,
                 color = Color.White
             )
-            Text(
-                text = stringResource(id = R.string.register_underline_label),
-                textAlign = TextAlign.Center,
-                color = Color.White,
-                textDecoration = TextDecoration.Underline
+            ClickableText(
+                text = AnnotatedString(stringResource(id = R.string.register_underline_label)),
+                modifier = Modifier.padding(start = 8.dp),
+                onClick = { navController.navigate(Screen.RegisterScreen.route) },
+                style = TextStyle(
+                    color = Color.White,
+                    textDecoration = TextDecoration.Underline,
+                    textAlign = TextAlign.Center
+                )
             )
         }
 

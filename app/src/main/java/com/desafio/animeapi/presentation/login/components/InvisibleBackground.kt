@@ -22,6 +22,6 @@ fun InvisibleBackground(
         contentScale = ContentScale.Crop,
         modifier = Modifier
             .fillMaxSize()
-            .blur(40.dp)
+            .blur(15.dp)
     )
 }
