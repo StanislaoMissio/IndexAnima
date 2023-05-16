@@ -28,9 +28,14 @@ class LoginViewModel(
                 is Resource.Success -> _state.value =
                     LoginState(login = true)
                 is Resource.Error -> _state.value =
-                    LoginState(error = result.message ?: "An unexpected error occurred")
+                    LoginState(
+                        error = result.message ?: "Algo deu errado, tente novamente mais tarde!"
+                    )
             }
         }.launchIn(viewModelScope)
     }
 
+    fun cleanErrorState() {
+        _state.value = LoginState(error = "")
+    }
 }

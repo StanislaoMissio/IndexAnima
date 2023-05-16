@@ -27,10 +27,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.desafio.animeapi.R
 import com.desafio.animeapi.presentation.Screen
+import com.desafio.animeapi.presentation.login.components.ErrorDialog
 import com.desafio.animeapi.presentation.login.components.InvisibleBackground
 import org.koin.androidx.compose.koinViewModel
 import java.util.*
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -129,7 +129,11 @@ fun LoginScreen(
             ClickableText(
                 text = AnnotatedString(stringResource(id = R.string.forgot_password)),
                 onClick = { /*TODO call forgot password screen*/ },
-                style = TextStyle(color = Color.White),
+                style = TextStyle(
+                    color = Color.White,
+                    fontSize = 16.sp,
+                    fontFamily = Font(R.font.roboto).toFontFamily()
+                ),
                 modifier = Modifier
                     .align(End)
                     .padding(top = 8.dp, end = 8.dp)
@@ -137,7 +141,7 @@ fun LoginScreen(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 16.dp),
+                    .padding(top = 8.dp),
                 verticalAlignment = CenterVertically
             ) {
                 Checkbox(
@@ -167,7 +171,7 @@ fun LoginScreen(
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 24.dp, start = 96.dp, end = 96.dp)
+                    .padding(top = 18.dp, start = 96.dp, end = 96.dp)
             )
             Button(
                 onClick = { /* TODO Criar chamada para google auth */ },
@@ -222,7 +226,12 @@ fun LoginScreen(
         CircularProgressIndicator()
     }
     if (state.error.isNotBlank()) {
-        Text(text = state.error)
+        ErrorDialog(
+            onDismissRequest = { loginViewModel.cleanErrorState() },
+            confirmButtonText = stringResource(id = R.string.ok),
+            title = stringResource(id = R.string.connection_error),
+            substring = state.error
+        )
     }
     if (state.login) {
         navController.navigate(Screen.AnimeListScreen.route)
