@@ -27,8 +27,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.desafio.animeapi.R
 import com.desafio.animeapi.presentation.Screen
-import com.desafio.animeapi.presentation.login.components.ErrorDialog
-import com.desafio.animeapi.presentation.login.components.InvisibleBackground
+import com.desafio.animeapi.presentation.components.DefaultButton
+import com.desafio.animeapi.presentation.components.ErrorDialog
+import com.desafio.animeapi.presentation.components.InvisibleBackground
 import org.koin.androidx.compose.koinViewModel
 import java.util.*
 
@@ -67,7 +68,7 @@ fun LoginScreen(
                 placeholder = {
                     Text(
                         text = stringResource(
-                            id = R.string.email_label
+                            id = R.string.email_label_login
                         ).uppercase(Locale.ROOT)
                     )
                 },
@@ -157,21 +158,9 @@ fun LoginScreen(
                     color = colorResource(id = R.color.C7C7C7)
                 )
             }
-            Button(
+            DefaultButton(
                 onClick = { loginViewModel.doLogin() },
-                content = {
-                    Text(
-                        text = stringResource(id = R.string.login),
-                        fontWeight = FontWeight.Bold
-                    )
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = colorResource(id = R.color.AF3BCD),
-                    contentColor = Color.White
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 18.dp, start = 96.dp, end = 96.dp)
+                content = R.string.login
             )
             Button(
                 onClick = { /* TODO Criar chamada para google auth */ },

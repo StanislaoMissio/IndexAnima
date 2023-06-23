@@ -1,4 +1,4 @@
-package com.desafio.animeapi.presentation.login.components
+package com.desafio.animeapi.presentation.components
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
