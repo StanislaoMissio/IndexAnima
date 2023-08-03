@@ -60,11 +60,14 @@ dependencies {
     val loggingOkhttpVersion = "4.11.0"
     val okhttpVersion = "4.11.0"
     val koinVersion = "3.4.3"
+    val navVersion = "2.6.0"
 
+    //Downloading the compose Bom I don't need to set the version for every compose implementation
     val composeBom = platform("androidx.compose:compose-bom:2023.01.00")
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
+    //Downloading the firebase bom I don't need to set the version for every firebase implementation
     val firebaseBom = platform("com.google.firebase:firebase-bom:31.3.0")
     implementation(firebaseBom)
 
@@ -76,7 +79,19 @@ dependencies {
     testImplementation("com.squareup.okhttp3:mockwebserver:$okhttpVersion")
 
     //Compose
+    //Downloading the last version of material design to use with compose
     implementation("androidx.compose.material3:material3")
+    // Integration with activities
+    implementation("androidx.activity:activity-compose:1.7.2")
+    // Integration with ViewModels
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.navigation:navigation-compose:$navVersion")
+
+    //Setting up the tool to preview compose classes in android studio
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    debugImplementation("androidx.compose.ui:ui-tooling")
+
 
     //Koin
     implementation("io.insert-koin:koin-android:$koinVersion")
@@ -86,6 +101,5 @@ dependencies {
     //Firebase
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
-
 
 }
