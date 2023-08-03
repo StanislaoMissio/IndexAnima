@@ -9,5 +9,6 @@ class RepositoryImpl(private val api: Api) : Repository {
 
     override suspend fun getAnimes(): Response<AnimeDto> = api.getAnimes()
     override suspend fun getAnime(animeId: String): Response<AnimeDto> = api.getAnime(animeId)
+    override suspend fun getTopAnimeList(animeId: String): Response<AnimeDto> = api.getTopAnimeList()
 
 }
