@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">AnimeApi</string>
     <string name="password_label">Senha</string>
-    <string name="email_label">Email</string>
-    <string name="register_label">Cadastre-se</string>
+    <string name="email_label">Username/Email</string>
+    <string name="register_label">Não possui uma conta? </string>
+    <string name="register_underline_label">Criar conta </string>
+    <string name="login">Entrar</string>
+    <string name="forgot_password">Esqueceu a senha?</string>
+    <string name="login_with_google">Entrar com Google</string>
+    <string name="login_label">Faça o login em sua conta</string>
+    <string name="remember_password">Lembrar de mim</string>
+    <string name="ok">OK</string>
+    <string name="connection_error">Erro de conexão</string>
+    <string name="wrong_email_or_password">Email ou senha inválidos</string>
+    <string name="try_again_later">Tente novamente mais tarde.</string>
 </resources>
