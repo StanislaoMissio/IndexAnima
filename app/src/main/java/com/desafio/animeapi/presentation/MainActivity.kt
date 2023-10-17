@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.desafio.animeapi.presentation.anime_list.AnimeListScreen
+import com.desafio.animeapi.presentation.home.HomeScreen
 import com.desafio.animeapi.presentation.login.LoginScreen
 import com.desafio.animeapi.presentation.register.RegisterScreen
 import com.desafio.animeapi.presentation.splash_screen.SplashScreen
@@ -27,6 +28,11 @@ class MainActivity : ComponentActivity() {
                         route = Screen.SplashScreen.route
                     ) {
                         SplashScreen(navController = navController)
+                    }
+                    composable(
+                        route = Screen.HomeScreen.route
+                    ) {
+                        HomeScreen(navController = navController)
                     }
                     composable(
                         route = Screen.LoginScreen.route

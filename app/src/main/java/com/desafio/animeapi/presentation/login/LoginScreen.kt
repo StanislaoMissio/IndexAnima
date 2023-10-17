@@ -223,6 +223,6 @@ fun LoginScreen(
         )
     }
     if (state.login) {
-        navController.navigate(Screen.AnimeListScreen.route)
+        navController.navigate(Screen.HomeScreen.route)
     }
 }

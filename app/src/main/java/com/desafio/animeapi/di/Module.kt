@@ -1,13 +1,15 @@
 package com.desafio.animeapi.di
 
 import com.desafio.animeapi.BuildConfig
-import com.desafio.animeapi.data.repository.RepositoryImpl
-import com.desafio.animeapi.domain.repository.Repository
+import com.desafio.animeapi.data.repository.AnimeRepositoryImpl
+import com.desafio.animeapi.domain.repository.AnimeRepository
 import com.desafio.animeapi.domain.usecase.do_initialize.DoInitializeApplication
 import com.desafio.animeapi.domain.usecase.do_register.DoRegisterUseCase
+import com.desafio.animeapi.domain.usecase.get_animelist.GetTopAnimeListUseCase
 import com.desafio.animeapi.domain.usecase.get_animes.GetAnimesUseCase
 import com.desafio.animeapi.domain.usecase.get_login.DoLoginUseCase
 import com.desafio.animeapi.presentation.anime_list.AnimeListViewModel
+import com.desafio.animeapi.presentation.home.HomeViewModel
 import com.desafio.animeapi.presentation.login.LoginViewModel
 import com.desafio.animeapi.presentation.register.RegisterViewModel
 import com.desafio.animeapi.presentation.splash_screen.SplashScreenViewModel
@@ -27,15 +29,16 @@ val networkModule = module {
     factory { getFirebaseAuth() }
 }
 
-val repositoryModule = module {
-    single<Repository> { RepositoryImpl(api = get()) }
+val animeRepositoryModule = module {
+    single<AnimeRepository> { AnimeRepositoryImpl(api = get()) }
 }
 
 val useCaseModule = module {
-    factory { GetAnimesUseCase(repository = get()) }
+    factory { GetAnimesUseCase(animeRepository = get()) }
     factory { DoLoginUseCase(auth = get()) }
     factory { DoRegisterUseCase(auth = get()) }
     factory { DoInitializeApplication() }
+    factory { GetTopAnimeListUseCase(animeRepository = get()) }
 }
 
 val viewModelModule = module {
@@ -43,6 +46,7 @@ val viewModelModule = module {
     viewModel { LoginViewModel(doLoginUseCase = get()) }
     viewModel { RegisterViewModel(doRegisterUseCase = get()) }
     viewModel { SplashScreenViewModel(doInitializeApplication = get()) }
+    viewModel { HomeViewModel(getTopAnimeListUseCase = get()) }
 }
 
 private fun getRetrofit(okHttpClient: OkHttpClient): Retrofit {

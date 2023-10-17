@@ -10,22 +10,19 @@ import java.io.IOException
 class DoInitializeApplication {
 
     operator fun invoke(): Flow<Resource<Boolean>> = flow {
-        try {
-            emit(Resource.Loading())
+        emit(Resource.Loading())
+        val result = try {
             val user = FirebaseAuth.getInstance().currentUser != null
-            emit(Resource.Success(data = user))
+            Resource.Success(data = user)
         } catch (exception: IOException) {
-            emit(
-                Resource.Error(
-                    message = exception.localizedMessage ?: "Conection problem, try again later!"
-                )
+            Resource.Error(
+                message = exception.localizedMessage ?: "Conection problem, try again later!"
             )
         } catch (exception: FirebaseAuthException) {
-            emit(
-                Resource.Error(
-                    message = exception.localizedMessage ?: "Someting went wrong, try again later!"
-                )
+            Resource.Error(
+                message = exception.localizedMessage ?: "Someting went wrong, try again later!"
             )
         }
+        emit(result)
     }
 }
