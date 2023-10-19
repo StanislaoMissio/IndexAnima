@@ -2,7 +2,9 @@ package com.desafio.animeapi.di
 
 import android.content.Context
 import com.desafio.animeapi.BuildConfig
+import com.desafio.animeapi.data.repository.AnimeRepositoryImpl
 import com.desafio.animeapi.data.repository.AuthenticatorImpl
+import com.desafio.animeapi.domain.repository.AnimeRepository
 import com.desafio.animeapi.domain.repository.Authenticator
 import com.desafio.animeapi.domain.usecase.do_initialize.DoInitializeApplication
 import com.desafio.animeapi.domain.usecase.do_register.DoRegisterUseCase

@@ -13,7 +13,6 @@ class DoLoginUseCase(private val auth: Authenticator) {
     operator fun invoke(email: String, password: String): Flow<Resource<SignInResult>> = flow {
         emit(Resource.Loading())
         val result = try {
-        val result = try {
             val result = auth.authenticateWithEmailAndPassword(email, password)
             Resource.Success(data = result)
         } catch (exception: FirebaseAuthException) {
