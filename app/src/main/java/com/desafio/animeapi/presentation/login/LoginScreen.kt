@@ -186,7 +186,7 @@ fun LoginScreen(
                     .padding(top = 18.dp, start = 96.dp, end = 96.dp)
             )
             Button(
-                onClick = { onGoogleLoginClick },
+                onClick = { onGoogleLoginClick() },
                 content = {
                     Row(verticalAlignment = CenterVertically) {
                         Image(

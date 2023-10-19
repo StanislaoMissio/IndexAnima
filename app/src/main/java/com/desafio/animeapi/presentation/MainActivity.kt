@@ -57,16 +57,6 @@ class MainActivity : ComponentActivity() {
 
                                 })
 
-                        LaunchedEffect(key1 = state.login) {
-                            if (state.login) {
-                                Toast.makeText(
-                                    applicationContext, "Sign In successful", Toast.LENGTH_LONG
-                                ).show()
-                                navController.navigate(Screen.HomeScreen.route)
-                                loginViewModel.cleanErrorState()
-                            }
-                        }
-
                         LoginScreen(
                             navController = navController,
                             loginViewModel = loginViewModel,
