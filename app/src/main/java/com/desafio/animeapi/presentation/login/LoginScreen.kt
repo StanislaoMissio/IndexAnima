@@ -1,11 +1,13 @@
 package com.desafio.animeapi.presentation.login
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment.Companion.BottomCenter
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Alignment.Companion.End
@@ -158,7 +160,7 @@ fun LoginScreen(
                 )
             }
             Button(
-                onClick = { loginViewModel.doLogin() },
+                onClick = { loginViewModel.doLoginWithEmailAndPassword() },
                 content = {
                     Text(
                         text = stringResource(id = R.string.login),
@@ -174,7 +176,7 @@ fun LoginScreen(
                     .padding(top = 18.dp, start = 96.dp, end = 96.dp)
             )
             Button(
-                onClick = { /* TODO Criar chamada para google auth */ },
+                onClick = { loginViewModel.doLoginWithGoogle() },
                 content = {
                     Row(verticalAlignment = CenterVertically) {
                         Image(
@@ -223,7 +225,16 @@ fun LoginScreen(
     }
 
     if (state.isLoading) {
-        CircularProgressIndicator()
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Transparent)
+        ) {
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .align(Center)
+            )
+        }
     }
     if (state.error.isNotBlank()) {
         ErrorDialog(
