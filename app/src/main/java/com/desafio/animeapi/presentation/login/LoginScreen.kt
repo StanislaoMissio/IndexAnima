@@ -1,5 +1,9 @@
 package com.desafio.animeapi.presentation.login
 
+import android.content.IntentSender
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -14,6 +18,7 @@ import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -28,17 +33,22 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.desafio.animeapi.R
+import com.desafio.animeapi.common.Constants
 import com.desafio.animeapi.presentation.Screen
 import com.desafio.animeapi.presentation.login.components.ErrorDialog
 import com.desafio.animeapi.presentation.login.components.InvisibleBackground
-import org.koin.androidx.compose.koinViewModel
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.SignInClient
 import java.util.*
+import java.util.concurrent.CancellationException
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
     navController: NavController,
-    loginViewModel: LoginViewModel = koinViewModel()
+    loginViewModel: LoginViewModel,
+    onGoogleLoginClick: () -> Unit
 ) {
     var email by remember { loginViewModel.email }
     var password by remember { loginViewModel.password }
@@ -176,7 +186,7 @@ fun LoginScreen(
                     .padding(top = 18.dp, start = 96.dp, end = 96.dp)
             )
             Button(
-                onClick = { loginViewModel.doLoginWithGoogle() },
+                onClick = { onGoogleLoginClick },
                 content = {
                     Row(verticalAlignment = CenterVertically) {
                         Image(

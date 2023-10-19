@@ -1,10 +1,10 @@
 package com.desafio.animeapi.data.repository
 
+import android.content.Intent
 import com.desafio.animeapi.data.remote.SignInResult
 import com.desafio.animeapi.data.remote.User
 import com.desafio.animeapi.domain.repository.Authenticator
 import com.google.android.gms.auth.api.identity.SignInClient
-import com.google.android.gms.auth.api.identity.SignInCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -32,7 +32,8 @@ class AuthenticatorImpl(
         )
     }
 
-    override suspend fun authenticateWithGoogleAuth(credentials: SignInCredential): SignInResult {
+    override suspend fun authenticateWithGoogleAuth(intent: Intent): SignInResult {
+        val credentials = oneTapClient.getSignInCredentialFromIntent(intent)
         val googleIdToken = credentials.googleIdToken
         val googleCredentials = GoogleAuthProvider.getCredential(googleIdToken, null)
         return try {
