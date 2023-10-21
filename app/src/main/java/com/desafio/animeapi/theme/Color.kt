@@ -2,9 +2,9 @@ package com.desafio.animeapi.theme
 
 import androidx.compose.ui.graphics.Color
 
-val RoseQuartz = Color(0xFFAC9EB4)
+val AtomicTangerine = Color(0xFFF98948)
 val SilverLakeBlue = Color(0xFF5B85AA)
-val Crayola = Color(0xFF3772FF)
+val PacificCyan = Color(0xFF06AED5)
 val Seashell = Color(0xFFFFF3F0)
 val Jet = Color(0xFF41393E)
 

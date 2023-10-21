@@ -17,7 +17,7 @@ fun SplashScreen(
         LinearProgressIndicator()
     }
     if (state.user != null) {
-        navController.navigate(Screen.AnimeListScreen.route)
+        navController.navigate(Screen.HomeScreen.route)
     } else {
         navController.navigate(Screen.LoginScreen.route)
     }
