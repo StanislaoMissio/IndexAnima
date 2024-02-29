@@ -60,7 +60,7 @@ dependencies {
     val retrofitVersion = "2.9.0"
     val loggingOkhttpVersion = "4.11.0"
     val okhttpVersion = "4.11.0"
-    val composeNavVersion = "2.7.4"
+    val composeNavVersion = "2.7.7"
 
     //Retrofit / Okhttp
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
@@ -96,8 +96,8 @@ dependencies {
     implementation(firebaseBom)
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.firebase:firebase-database-ktx")
-    implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("com.google.android.gms:play-services-auth:21.0.0")
+    implementation("com.google.firebase:firebase-firestore-ktx")
 
     //Coil
     implementation("io.coil-kt:coil-compose:2.4.0")
