@@ -56,6 +56,10 @@ import com.desafio.animeapi.presentation.Screen
 import com.desafio.animeapi.presentation.components.DefaultButton
 import com.desafio.animeapi.presentation.components.ErrorDialog
 import com.desafio.animeapi.presentation.components.InvisibleBackground
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.SignInClient
+import java.util.concurrent.CancellationException
 import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
