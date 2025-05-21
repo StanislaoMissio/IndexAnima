@@ -10,4 +10,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="C7C7C7">#C7C7C7</color>
+    <color name="AF3BCD">#AF3BCD</color>
+    <color name="D195E0">#D195E0</color>
+    <color name="ECE6F0">#ECE6F0</color>
+    <color name="titleColor">#1D1B20</color>
+    <color name="substringColor">#49454F</color>
+    <color name="button_text_color">#4E1D5D</color>
 </resources>
