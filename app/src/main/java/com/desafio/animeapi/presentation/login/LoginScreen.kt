@@ -1,15 +1,32 @@
 package com.desafio.animeapi.presentation.login
 
-import android.content.IntentSender
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.ClickableText
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -18,13 +35,15 @@ import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.*
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.font.toFontFamily
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -33,15 +52,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.desafio.animeapi.R
-import com.desafio.animeapi.common.Constants
 import com.desafio.animeapi.presentation.Screen
-import com.desafio.animeapi.presentation.login.components.ErrorDialog
-import com.desafio.animeapi.presentation.login.components.InvisibleBackground
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
-import com.google.android.gms.auth.api.identity.Identity
-import com.google.android.gms.auth.api.identity.SignInClient
-import java.util.*
-import java.util.concurrent.CancellationException
+import com.desafio.animeapi.presentation.components.DefaultButton
+import com.desafio.animeapi.presentation.components.ErrorDialog
+import com.desafio.animeapi.presentation.components.InvisibleBackground
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -79,7 +94,7 @@ fun LoginScreen(
                 placeholder = {
                     Text(
                         text = stringResource(
-                            id = R.string.email_label
+                            id = R.string.email_label_login
                         ).uppercase(Locale.ROOT)
                     )
                 },
@@ -169,21 +184,9 @@ fun LoginScreen(
                     color = colorResource(id = R.color.C7C7C7)
                 )
             }
-            Button(
+            DefaultButton(
                 onClick = { loginViewModel.doLoginWithEmailAndPassword() },
-                content = {
-                    Text(
-                        text = stringResource(id = R.string.login),
-                        fontWeight = FontWeight.Bold
-                    )
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = colorResource(id = R.color.AF3BCD),
-                    contentColor = Color.White
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 18.dp, start = 96.dp, end = 96.dp)
+                content = R.string.login
             )
             Button(
                 onClick = { onGoogleLoginClick() },
@@ -255,6 +258,6 @@ fun LoginScreen(
         )
     }
     if (state.login) {
-        navController.navigate(Screen.AnimeListScreen.route)
+        navController.navigate(Screen.HomeScreen.route)
     }
 }

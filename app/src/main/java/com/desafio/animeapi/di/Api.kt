@@ -13,7 +13,7 @@ interface Api {
     @GET("anime?filter[id]={id}")
     suspend fun getAnime(@Path("id") animeId: String): Response<AnimeDto>
 
-    @GET("anime?filter[id]={id}")
-    suspend fun getTopAnimeList(@Path("id") animeId: String): Response<AnimeDto>
+    @GET("trending/anime")
+    suspend fun getTopAnimeList(): Response<AnimeDto>
 
 }

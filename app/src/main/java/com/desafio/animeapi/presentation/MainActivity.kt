@@ -1,20 +1,19 @@
 package com.desafio.animeapi.presentation
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.desafio.animeapi.common.GoogleAuthUiClient
 import com.desafio.animeapi.presentation.anime_list.AnimeListScreen
+import com.desafio.animeapi.presentation.home.HomeScreen
 import com.desafio.animeapi.presentation.login.LoginScreen
 import com.desafio.animeapi.presentation.login.LoginViewModel
 import com.desafio.animeapi.presentation.register.RegisterScreen
@@ -40,10 +39,14 @@ class MainActivity : ComponentActivity() {
                         SplashScreen(navController = navController)
                     }
                     composable(
+                        route = Screen.HomeScreen.route
+                    ) {
+                        HomeScreen(navController = navController)
+                    }
+                    composable(
                         route = Screen.LoginScreen.route
                     ) {
                         val loginViewModel: LoginViewModel = koinViewModel()
-                        val state = loginViewModel.state.value
                         val launcher =
                             rememberLauncherForActivityResult(contract = ActivityResultContracts.StartIntentSenderForResult(),
                                 onResult = { result ->

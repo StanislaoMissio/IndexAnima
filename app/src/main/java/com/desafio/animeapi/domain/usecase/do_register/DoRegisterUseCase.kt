@@ -12,15 +12,16 @@ import java.io.IOException
 class DoRegisterUseCase(private val auth: FirebaseAuth) {
 
     operator fun invoke(email: String, password: String): Flow<Resource<AuthResult>> = flow {
-        try {
-            emit(Resource.Loading())
+        emit(Resource.Loading())
+        val result = try {
             val result = auth.createUserWithEmailAndPassword(email, password).await()
-            emit(Resource.Success(result))
+            Resource.Success(result)
         } catch (exception: FirebaseAuthException) {
-            emit(Resource.Error(message = "Erro ao efetuar login, tente novamente"))
+            Resource.Error(message = "Erro ao efetuar login, tente novamente")
         } catch (exception: IOException) {
-            emit(Resource.Error(message = "Algo deu errado, tente novamente mais tarde!"))
+            Resource.Error(message = "Algo deu errado, tente novamente mais tarde!")
         }
+        emit(result)
     }
 
 }

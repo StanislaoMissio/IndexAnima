@@ -2,7 +2,7 @@ package com.desafio.animeapi
 
 import android.app.Application
 import com.desafio.animeapi.di.networkModule
-import com.desafio.animeapi.di.repositoryModule
+import com.desafio.animeapi.di.animeRepositoryModule
 import com.desafio.animeapi.di.useCaseModule
 import com.desafio.animeapi.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
@@ -16,7 +16,7 @@ class AnimeApiApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@AnimeApiApplication)
-            modules(networkModule, repositoryModule, viewModelModule, useCaseModule)
+            modules(networkModule, animeRepositoryModule, viewModelModule, useCaseModule)
         }
     }
 
