@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.desafio.animeapi"
-    compileSdk = 34
+    compileSdk = 35
 
     buildFeatures {
         compose = true
@@ -21,7 +21,7 @@ android {
     defaultConfig {
         applicationId = "com.desafio.animeapi"
         minSdk = 23
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -32,15 +32,13 @@ android {
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
         getByName("debug") {
             isDebuggable = true
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
             buildConfigField("String", "BASE_URL", "\"https://kitsu.io/api/edge/\"")
         }
@@ -56,17 +54,15 @@ android {
 }
 
 dependencies {
-    implementation("androidx.test.ext:junit-ktx:1.1.5")
-    val retrofitVersion = "2.9.0"
-    val loggingOkhttpVersion = "4.11.0"
-    val okhttpVersion = "4.11.0"
-    val composeNavVersion = "2.7.4"
+    val retrofitVersion = "2.11.0"
+    val okhttpVersion = "4.12.0"
+    val composeNavVersion = "2.9.0"
 
     //Retrofit / Okhttp
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
     implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
     implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
-    implementation("com.squareup.okhttp3:logging-interceptor:$loggingOkhttpVersion")
+    implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
     testImplementation("com.squareup.okhttp3:mockwebserver:$okhttpVersion")
 
     //Compose
@@ -96,10 +92,15 @@ dependencies {
     implementation(firebaseBom)
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.firebase:firebase-database-ktx")
-    implementation("com.google.android.gms:play-services-auth:20.7.0")
+    implementation("com.google.android.gms:play-services-auth:21.3.0")
+    implementation("com.google.firebase:firebase-firestore-ktx")
+
+    //SplashScreen Api
+    implementation("androidx.core:core-splashscreen:1.0.1")
 
     //Coil
     implementation("io.coil-kt:coil-compose:2.4.0")
+
+    implementation("androidx.test.ext:junit-ktx:1.2.1")
 
 }

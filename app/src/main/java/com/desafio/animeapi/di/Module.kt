@@ -2,18 +2,20 @@ package com.desafio.animeapi.di
 
 import android.content.Context
 import com.desafio.animeapi.BuildConfig
+import com.desafio.animeapi.data.repository.AnimeRepositoryImpl
 import com.desafio.animeapi.data.repository.AuthenticatorImpl
-import com.desafio.animeapi.data.repository.RepositoryImpl
+import com.desafio.animeapi.domain.repository.AnimeRepository
 import com.desafio.animeapi.domain.repository.Authenticator
-import com.desafio.animeapi.domain.repository.Repository
 import com.desafio.animeapi.domain.usecase.do_initialize.DoInitializeApplication
 import com.desafio.animeapi.domain.usecase.do_register.DoRegisterUseCase
+import com.desafio.animeapi.domain.usecase.get_animelist.GetTopAnimeListUseCase
 import com.desafio.animeapi.domain.usecase.get_animes.GetAnimesUseCase
 import com.desafio.animeapi.domain.usecase.get_login.DoLoginUseCase
 import com.desafio.animeapi.domain.usecase.get_login.DoLoginWithGoogle
 import com.desafio.animeapi.domain.usecase.get_login.DoLogoutUseCase
 import com.desafio.animeapi.domain.usecase.get_login.LoginUseCase
 import com.desafio.animeapi.presentation.anime_list.AnimeListViewModel
+import com.desafio.animeapi.presentation.home.HomeViewModel
 import com.desafio.animeapi.presentation.login.LoginViewModel
 import com.desafio.animeapi.presentation.register.RegisterViewModel
 import com.desafio.animeapi.presentation.splash_screen.SplashScreenViewModel
@@ -37,13 +39,13 @@ val networkModule = module {
     factory { getOneTapClient(context = androidApplication().applicationContext) }
 }
 
-val repositoryModule = module {
-    single<Repository> { RepositoryImpl(api = get()) }
+val animeRepositoryModule = module {
+    single<AnimeRepository> { AnimeRepositoryImpl(api = get()) }
     single<Authenticator> { AuthenticatorImpl(auth = get(), oneTapClient = get()) }
 }
 
 val useCaseModule = module {
-    factory { GetAnimesUseCase(repository = get()) }
+    factory { GetAnimesUseCase(animeRepository = get()) }
     factory { DoLoginUseCase(auth = get()) }
     factory { DoLoginWithGoogle(auth = get()) }
     factory { DoLogoutUseCase(auth = get()) }
@@ -56,6 +58,7 @@ val useCaseModule = module {
             doLoginWithGoogle = get()
         )
     }
+    factory { GetTopAnimeListUseCase(animeRepository = get()) }
 }
 
 val viewModelModule = module {
@@ -63,6 +66,7 @@ val viewModelModule = module {
     viewModel { LoginViewModel(loginUseCase = get()) }
     viewModel { RegisterViewModel(doRegisterUseCase = get()) }
     viewModel { SplashScreenViewModel(doInitializeApplication = get()) }
+    viewModel { HomeViewModel(getTopAnimeListUseCase = get()) }
 }
 
 private fun getRetrofit(okHttpClient: OkHttpClient): Retrofit {
