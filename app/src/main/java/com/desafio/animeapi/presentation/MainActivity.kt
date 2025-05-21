@@ -1,14 +1,12 @@
 package com.desafio.animeapi.presentation
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -49,7 +47,6 @@ class MainActivity : ComponentActivity() {
                         route = Screen.LoginScreen.route
                     ) {
                         val loginViewModel: LoginViewModel = koinViewModel()
-                        val state = loginViewModel.state.value
                         val launcher =
                             rememberLauncherForActivityResult(contract = ActivityResultContracts.StartIntentSenderForResult(),
                                 onResult = { result ->
