@@ -11,4 +11,6 @@ object Constants {
 
     const val DEFAULT_WEB_ID = "606004172659-qgl900cgfd5b8ulog33547pned8jdfrp.apps.googleusercontent.com"
 
+    const val USER_COLLECTION_ID = "Users"
+
 }

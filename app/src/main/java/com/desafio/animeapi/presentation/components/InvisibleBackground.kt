@@ -1,4 +1,4 @@
-package com.desafio.animeapi.presentation.login.components
+package com.desafio.animeapi.presentation.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize

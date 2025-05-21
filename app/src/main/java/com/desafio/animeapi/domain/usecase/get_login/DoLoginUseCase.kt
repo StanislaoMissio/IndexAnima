@@ -3,12 +3,9 @@ package com.desafio.animeapi.domain.usecase.get_login
 import com.desafio.animeapi.common.Resource
 import com.desafio.animeapi.data.remote.SignInResult
 import com.desafio.animeapi.domain.repository.Authenticator
-import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.tasks.await
 import java.io.IOException
 
 class DoLoginUseCase(private val auth: Authenticator) {
@@ -27,5 +24,4 @@ class DoLoginUseCase(private val auth: Authenticator) {
         }
         emit(result)
     }
-
 }
