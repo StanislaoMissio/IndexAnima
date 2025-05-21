@@ -1,17 +1,24 @@
 package com.desafio.animeapi.presentation.login
 
+import android.content.IntentSender
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment.Companion.BottomCenter
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -26,18 +33,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.desafio.animeapi.R
+import com.desafio.animeapi.common.Constants
 import com.desafio.animeapi.presentation.Screen
 import com.desafio.animeapi.presentation.components.DefaultButton
 import com.desafio.animeapi.presentation.components.ErrorDialog
 import com.desafio.animeapi.presentation.components.InvisibleBackground
-import org.koin.androidx.compose.koinViewModel
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import com.google.android.gms.auth.api.identity.Identity
+import com.google.android.gms.auth.api.identity.SignInClient
 import java.util.*
+import java.util.concurrent.CancellationException
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginScreen(
     navController: NavController,
-    loginViewModel: LoginViewModel = koinViewModel()
+    loginViewModel: LoginViewModel,
+    onGoogleLoginClick: () -> Unit
 ) {
     var email by remember { loginViewModel.email }
     var password by remember { loginViewModel.password }
@@ -159,11 +171,11 @@ fun LoginScreen(
                 )
             }
             DefaultButton(
-                onClick = { loginViewModel.doLogin() },
+                onClick = { loginViewModel.doLoginWithEmailAndPassword() },
                 content = R.string.login
             )
             Button(
-                onClick = { /* TODO Criar chamada para google auth */ },
+                onClick = { onGoogleLoginClick() },
                 content = {
                     Row(verticalAlignment = CenterVertically) {
                         Image(
@@ -212,7 +224,16 @@ fun LoginScreen(
     }
 
     if (state.isLoading) {
-        CircularProgressIndicator()
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Transparent)
+        ) {
+            CircularProgressIndicator(
+                modifier = Modifier
+                    .align(Center)
+            )
+        }
     }
     if (state.error.isNotBlank()) {
         ErrorDialog(

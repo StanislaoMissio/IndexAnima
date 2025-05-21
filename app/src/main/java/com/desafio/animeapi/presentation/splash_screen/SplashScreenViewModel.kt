@@ -23,9 +23,12 @@ class SplashScreenViewModel(
     private fun shouldAppInitialize() {
         doInitializeApplication().onEach { result ->
             when (result) {
-                is Resource.Success -> _state.value = SplashScreenState(isLogged = true)
+                is Resource.Success -> {
+                    _state.value = SplashScreenState(user = result.data)
+                }
                 is Resource.Error -> _state.value =
                     SplashScreenState(error = result.message ?: "Something went wrong")
+
                 is Resource.Loading -> _state.value = SplashScreenState(isLoading = true)
             }
         }.launchIn(viewModelScope)
