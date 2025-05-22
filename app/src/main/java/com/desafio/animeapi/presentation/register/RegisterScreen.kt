@@ -30,7 +30,6 @@ import com.desafio.animeapi.presentation.components.InvisibleBackground
 import org.koin.androidx.compose.koinViewModel
 import java.util.*
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(
     navController: NavController,
@@ -74,12 +73,8 @@ fun RegisterScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 54.dp),
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.White,
-                    focusedIndicatorColor = colorResource(id = R.color.D195E0),
-                    cursorColor = Color.White,
-                    textColor = Color.White
+                colors = TextFieldDefaults.colors(
+
                 )
             )
             TextField(
@@ -94,12 +89,8 @@ fun RegisterScreen(
                 },
                 modifier = Modifier
                     .fillMaxWidth(),
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.White,
-                    focusedIndicatorColor = colorResource(id = R.color.D195E0),
-                    cursorColor = Color.White,
-                    textColor = Color.White
+                colors = TextFieldDefaults.colors(
+
                 )
             )
             TextField(
@@ -114,12 +105,8 @@ fun RegisterScreen(
                 },
                 modifier = Modifier
                     .fillMaxWidth(),
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.White,
-                    focusedIndicatorColor = colorResource(id = R.color.D195E0),
-                    cursorColor = Color.White,
-                    textColor = Color.White
+                colors = TextFieldDefaults.colors(
+
                 )
             )
             TextField(
@@ -134,12 +121,8 @@ fun RegisterScreen(
                 },
                 modifier = Modifier
                     .fillMaxWidth(),
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.White,
-                    focusedIndicatorColor = colorResource(id = R.color.D195E0),
-                    cursorColor = Color.White,
-                    textColor = Color.White
+                colors = TextFieldDefaults.colors(
+
                 )
             )
             Row(

@@ -13,16 +13,16 @@ class AnimeDetailViewModel(private val getAnimeUseCase: GetAnimeUseCase) : ViewM
     private val _state = mutableStateOf(AnimeDetailState())
     val state: State<AnimeDetailState> = _state
 
-    fun getAnimeDetail(anime: String) {
-        getAnimeUseCase(anime).onEach { result ->
-            when (result) {
-                is Resource.Loading -> _state.value = AnimeDetailState(isLoading = true)
-                is Resource.Success -> _state.value = AnimeDetailState(animeDetail = result.data)
-                is Resource.Error -> _state.value = AnimeDetailState(
-                    error = result.message ?: "Something went wrong, try again later!"
-                )
-            }
-        }
-    }
+//    fun getAnimeDetail(anime: String) {
+//        getAnimeUseCase(anime).onEach { result ->
+//            when (result) {
+//                is Resource.Loading -> _state.value = AnimeDetailState(isLoading = true)
+//                is Resource.Success -> _state.value = AnimeDetailState(animeDetail = result.data)
+//                is Resource.Error -> _state.value = AnimeDetailState(
+//                    error = result.message ?: "Something went wrong, try again later!"
+//                )
+//            }
+//        }
+//    }
 
 }

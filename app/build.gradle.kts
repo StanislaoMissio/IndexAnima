@@ -1,8 +1,8 @@
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-kapt")
-    id("com.google.gms.google-services")
+    alias(libs.plugins.android.plugin)
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.google.services)
 }
 
 android {
@@ -54,53 +54,47 @@ android {
 }
 
 dependencies {
-    val retrofitVersion = "2.11.0"
-    val okhttpVersion = "4.12.0"
-    val composeNavVersion = "2.9.0"
 
     //Retrofit / Okhttp
-    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
-    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
-    implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
-    implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
-    testImplementation("com.squareup.okhttp3:mockwebserver:$okhttpVersion")
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson.converter)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
+    testImplementation(libs.okhttp.mockwebserver)
 
     //Compose
     //Downloading the compose Bom I don't need to set the version for every compose implementation
-    val composeBom = platform("androidx.compose:compose-bom:2023.01.00")
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.activity:activity-compose")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.navigation:navigation-compose:$composeNavVersion")
+    implementation(platform(libs.compose.bom))
+    androidTestImplementation(platform(libs.compose.bom))
+    implementation(libs.compose.material3)
+    implementation(libs.compose.activity)
+    implementation(libs.compose.lifecycle)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.nav)
 
     //Setting up the tool to preview compose classes in android studio
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation(libs.compose.ui.tooling.preview)
+    debugImplementation(libs.compose.ui.tooling)
 
     //Koin
-    val koinBom = platform("io.insert-koin:koin-bom:3.5.1")
-    implementation(koinBom)
-    implementation("io.insert-koin:koin-android")
-    implementation("io.insert-koin:koin-androidx-compose")
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.android)
+    implementation(libs.koin.compose)
 
     //Firebase
     //Downloading the firebase bom I don't need to set the version for every firebase implementation
-    val firebaseBom = platform("com.google.firebase:firebase-bom:31.3.0")
-    implementation(firebaseBom)
-    implementation("com.google.firebase:firebase-analytics-ktx")
-    implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.android.gms:play-services-auth:21.3.0")
-    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.google.playservices.auth)
 
     //SplashScreen Api
-    implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation(libs.splashscreen.api)
 
     //Coil
-    implementation("io.coil-kt:coil-compose:2.4.0")
+    implementation(libs.coil)
 
-    implementation("androidx.test.ext:junit-ktx:1.2.1")
+    implementation(libs.test.junit)
 
 }

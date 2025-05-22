@@ -1,1 +1,47 @@
 [versions]
+agp = "8.9.3"
+kotlin = "2.0.21"
+google-services = "4.4.2"
+retrofit = "2.11.0"
+okhttp = "4.12.0"
+compose-bom = "2025.05.01"
+compose-nav = "2.9.0"
+koin-bom = "3.5.1"
+firebase-bom = "33.14.0"
+google-playservice-auth = "21.3.0"
+splashscreen-api = "1.0.1"
+coil = "2.4.0"
+test-junit = "1.2.1"
+
+[libraries]
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+okhttp-mockwebserver = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "okhttp" }
+compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-activity = { group = "androidx.activity", name = "activity-compose" }
+compose-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-nav = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose-nav" }
+koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin-bom" }
+koin-android = { group = "io.insert-koin", name = "koin-android" }
+koin-compose = { group = "io.insert-koin", name = "koin-androidx-compose" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth-ktx" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore-ktx" }
+google-playservices-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "google-playservice-auth" }
+splashscreen-api = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen-api" }
+coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+test-junit = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "test-junit" }
+
+[plugins]
+android-plugin = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }

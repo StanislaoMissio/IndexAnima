@@ -105,12 +105,7 @@ fun LoginScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 54.dp),
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.White,
-                    focusedIndicatorColor = colorResource(id = R.color.D195E0),
-                    cursorColor = Color.White,
-                    textColor = Color.White
+                colors = TextFieldDefaults.colors(
                 )
             )
             TextField(
@@ -125,12 +120,8 @@ fun LoginScreen(
                 },
                 modifier = Modifier
                     .fillMaxWidth(),
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.White,
-                    focusedIndicatorColor = colorResource(id = R.color.D195E0),
-                    cursorColor = Color.White,
-                    textColor = Color.White
+                colors = TextFieldDefaults.colors(
+
                 ),
                 trailingIcon = {
                     IconButton(
