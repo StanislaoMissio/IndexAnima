@@ -16,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.desafio.animeapi.presentation.components.DefaultScaffold
 import com.desafio.animeapi.presentation.home.components.TopAnimeCarouselItem
-import com.desafio.animeapi.theme.AtomicTangerine
 import org.koin.androidx.compose.koinViewModel
 
 @OptIn(ExperimentalFoundationApi::class)

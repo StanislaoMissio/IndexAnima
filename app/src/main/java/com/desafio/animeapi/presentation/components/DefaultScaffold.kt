@@ -15,7 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
 import com.desafio.animeapi.R
-import com.desafio.animeapi.theme.AtomicTangerine
+import com.desafio.animeapi.theme.Red
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -27,7 +27,7 @@ fun DefaultScaffold(
         topBar = {
             TopAppBar(
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
-                    containerColor = AtomicTangerine
+                    containerColor = Red
                 ),
                 title = {
                     SearchField()
@@ -46,7 +46,7 @@ fun DefaultScaffold(
         bottomBar = {
             CustomBottomBar(navController = navController)
         },
-        containerColor = AtomicTangerine,
+        containerColor = Red,
 
         ) {
         Box(modifier = Modifier.padding(it), content = content)

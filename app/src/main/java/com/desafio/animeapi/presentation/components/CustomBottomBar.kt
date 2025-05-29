@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.desafio.animeapi.presentation.Screen
-import com.desafio.animeapi.theme.AtomicTangerine
 import com.desafio.animeapi.theme.PacificCyan
 
 @Composable

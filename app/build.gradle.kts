@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.google.services)
+    alias(libs.plugins.room)
 }
 
 android {
@@ -18,6 +19,10 @@ android {
         kotlinCompilerExtensionVersion = "1.4.2"
     }
 
+    room {
+        schemaDirectory("$projectDir/schemas")
+    }
+
     defaultConfig {
         applicationId = "com.desafio.animeapi"
         minSdk = 23
@@ -29,18 +34,23 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
-        getByName("debug") {
+        debug {
             isDebuggable = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
             buildConfigField("String", "BASE_URL", "\"https://kitsu.io/api/edge/\"")
+            buildConfigField(
+                "String",
+                "OAUTH_KEY",
+                "\"606004172659-rbhkqeilk3gbkggpjkm05n9f6edun0ml.apps.googleusercontent.com\""
+            )
         }
     }
 
@@ -80,6 +90,10 @@ dependencies {
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.android)
     implementation(libs.koin.compose)
+    implementation(libs.koin.androidx.compose)
+    implementation(libs.koin.compose.navigation)
+    implementation(libs.koin.compose.viewmodel)
+    implementation(libs.koin.compose.viewmodel.navigation)
 
     //Firebase
     //Downloading the firebase bom I don't need to set the version for every firebase implementation
@@ -91,10 +105,14 @@ dependencies {
 
     //SplashScreen Api
     implementation(libs.splashscreen.api)
+    implementation(libs.credentials)
+    implementation(libs.googleid)
 
     //Coil
     implementation(libs.coil)
 
     implementation(libs.test.junit)
+
+    implementation(libs.room.runtime)
 
 }

@@ -1,6 +1,7 @@
 package com.desafio.animeapi.di
 
 import android.content.Context
+import androidx.room.Room
 import com.desafio.animeapi.BuildConfig
 import com.desafio.animeapi.data.repository.AnimeRepositoryImpl
 import com.desafio.animeapi.data.repository.AuthenticatorImpl
@@ -27,6 +28,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.koinApplication
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -85,3 +87,9 @@ private fun getApi(retrofit: Retrofit): Api = retrofit.create(Api::class.java)
 private fun getFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
 
 private fun getOneTapClient(context: Context): SignInClient = Identity.getSignInClient(context)
+
+private fun provideRoomDatabase(context: Context) = Room.databaseBuilder(
+    context = context,
+    klass = AppDatabase::class.java,
+    "indexAnime-database"
+).build()
